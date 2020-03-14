@@ -10,6 +10,7 @@ class Simulation:
         self.locations = set()
         self.numTics = numTics
         self.numPeople = numPeople
+        self.numInfected = dict()
         
         for i in range(numPeople):
             person = Person(i,0)
@@ -25,6 +26,8 @@ class Simulation:
         for tic in range(self.numTics):
             for person in self.people:
                 self.runTic(person)
+            numInfected[tic] = self.getNumInfected()
+        print(numInfected)
 
     def runTic(self, person):
         isInfected = person.isInfected()
@@ -54,9 +57,17 @@ class Simulation:
                     self.people[infect_id].carrier = 1
                 if carrier_dum >= p_carrirer:
                     self.people[infect_id].infected = 1
-        
+     
             
-        
+    def getNumInfected(self):
+        numInfected = 0
+        numUninfected = 0
+        for person in self.people:
+            if person.isInfected():
+                numInfected += 1
+            else:
+                numUninfected += 1
+        return  [numUninfected, numInfected]
         
         
         
