@@ -1,19 +1,21 @@
 class Person:
-    def __init__(self, id):
+    def __init__(self, id, dist):
         '''
         by default theyre uninfected
         '''
         self.infected = 0
         self.carrier = 0
         self.id = id
-
+        # bool on whether or not the person is distancing themselves
+        self.dist = dist
+        
     def isInfected(self):
         # set whether or not the person
         # is 
         return self.infected
 
-    def setLoc(self,locString):
-        self.loc = locString
+    def setLoc(self,locId):
+        self.loc = locId
 
     def getLoc(self):
         # return person's location
