@@ -1,4 +1,4 @@
-class location:
+class Location:
     def __init__(self, id):
         '''
         by default theyre uninfected
@@ -6,10 +6,10 @@ class location:
         self.people = set()
         self.id = id
 
-    def person_enters(person):
+    def personEnters(self, person):
         self.people.add(person)
     
-    def person_exits(person):
+    def personExits(self, person):
         self.people.remove(person)
 
     
