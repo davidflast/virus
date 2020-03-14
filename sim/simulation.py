@@ -11,6 +11,7 @@ class Simulation:
         self.numTics = numTics
         self.numPeople = numPeople
         self.numInfected = dict()
+        self.infectionSuperstars = dict()
         
         for i in range(numPeople):
             person = Person(i,0)
@@ -26,8 +27,9 @@ class Simulation:
         for tic in range(self.numTics):
             for person in self.people:
                 self.runTic(person)
-            numInfected[tic] = self.getNumInfected()
-        print(numInfected)
+            self.numInfected[tic] = self.getNumInfected()
+        print(self.numInfected)
+        self.getInfectionSuperstars()
 
     def runTic(self, person):
         isInfected = person.isInfected()
@@ -56,7 +58,10 @@ class Simulation:
                 if carrier_dum < p_carrirer:
                     self.people[infect_id].carrier = 1
                 if carrier_dum >= p_carrirer:
-                    self.people[infect_id].infected = 1
+                    if not self.people[infect_id].infected:
+                        person.infect()
+                        self.people[infect_id].infected = 1
+
      
             
     def getNumInfected(self):
@@ -68,6 +73,13 @@ class Simulation:
             else:
                 numUninfected += 1
         return  [numUninfected, numInfected]
+
+    def getInfectionSuperstars(self):
+        for person in self.people:
+            if person.numInfected > 0:
+                self.infectionSuperstars[person.getId()] = person.numInfected 
+        print("num Infectors" + str(len(self.infectionSuperstars)) )
+        print(sorted(self.infectionSuperstars.values()))
         
         
         
