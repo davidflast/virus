@@ -6,23 +6,25 @@ import random
 
 class Simulation:
     def __init__(self, numPeople, numLocations, numTics):
-        self.people = set()
+        self.people = []#set()
         self.locations = set()
         self.numTics = numTics
         self.numPeople = numPeople
         
         for i in range(numPeople):
-            person = Person(i)
-            if random() < .1:
-                person.infect()
-            people.add(person)
-        for i in range(numLocations)
-            locations.add(Location(i))
+            person = Person(i,0)
+            if random.uniform(0,1) < .1:
+                person.infected = 1
+            #self.people.add(person)
+            self.people.append(person)
+            
+        #for i in range(numLocations):
+        #    locations.add(Location(i))
     
     def runSimulation(self):
-        for tic in range(numTics):
+        for tic in range(self.numTics):
             for person in self.people:
-                runTic(person)
+                self.runTic(person)
 
     def runTic(self, person):
         isInfected = person.isInfected()
@@ -44,13 +46,13 @@ class Simulation:
             spread_dum = random.uniform(0,1)
 
             if spread_dum < p_spread:
-                infect_id = random.randint(0,self.numPeople)
+                infect_id = random.randint(0,self.numPeople-1)
                 
                 p_carrirer = 0.1
                 carrier_dum = random.uniform(0,1)
-                if carrier_dum < p_carrier:
+                if carrier_dum < p_carrirer:
                     self.people[infect_id].carrier = 1
-                if carrier_dum >= p_carrier:
+                if carrier_dum >= p_carrirer:
                     self.people[infect_id].infected = 1
         
             
