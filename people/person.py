@@ -1,0 +1,42 @@
+class Person:
+    def __init__(self, id):
+        '''
+        by default theyre uninfected
+        '''
+        self.infected = 0
+        self.carrier = 0
+        self.id = id
+
+    def isInfected(self):
+        # set whether or not the person
+        # is 
+        return self.infected
+
+    def setLoc(self,locString):
+        self.loc = locString
+
+    def getLoc(self):
+        # return person's location
+        return self.loc
+
+    def getId(self):
+        # get person's
+        # id #
+        return self.id
+
+    def interact(self):
+        # returns the infected
+        # person's carrirer status
+        return self.carrier
+    
+    def washHands(self):
+        # if person is a carrier
+        # washing hands stops them
+        # from being a carrier
+        if self.carrier:
+            self.carrier = 1
+        
+    
+    
+        
+        
